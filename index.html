@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pilihan Sasa ✨</title>
+  <meta name="description" content="Starter pack harian biar tetap rapi, fokus, dan produktif. Barang-barang pilihan Sasa yang nemenin rutinitas." />
+  <meta name="theme-color" content="#8fd0f6" />
+  <meta property="og:title" content="Pilihan Sasa ✨" />
+  <meta property="og:description" content="Starter pack harian biar tetap rapi, fokus, dan produktif." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☁️</text></svg>" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --sky-50: #f1faff;
+      --sky-100: #dff3ff;
+      --sky-200: #bfe5fb;
+      --sky-300: #8fd0f6;
+      --sky-400: #5bb8ee;
+      --sky-500: #2a97dc;
+      --sky-600: #1b84cc;
+      --sky-700: #166aa6;
+      --ink: #1f3a52;
+      --muted: #58728a;
+      --white: #ffffff;
+      --radius: 26px;
+      --shadow: 0 10px 30px -12px rgba(42, 151, 220, .45);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+    body {
+      font-family: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+      color: var(--ink);
+      line-height: 1.55;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 15% 0%, #ffffff 0, transparent 35%),
+        linear-gradient(180deg, var(--sky-200) 0%, var(--sky-100) 35%, var(--sky-50) 100%);
+      background-attachment: fixed;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* ---------- Dekorasi latar ---------- */
+    .sky { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+
+    .cloud {
+      position: absolute;
+      background: #fff;
+      border-radius: 100px;
+      opacity: .85;
+      filter: drop-shadow(0 6px 10px rgba(91, 184, 238, .25));
+      animation: drift linear infinite;
+    }
+    .cloud::before, .cloud::after { content: ""; position: absolute; background: #fff; border-radius: 50%; }
+    .cloud::before { width: 50%; height: 160%; top: -70%; left: 14%; }
+    .cloud::after  { width: 38%; height: 130%; top: -45%; right: 14%; }
+
+    .c1 { width: 120px; height: 34px; top: 8%;  left: -160px; animation-duration: 55s; }
+    .c2 { width: 90px;  height: 26px; top: 32%; left: -160px; animation-duration: 75s; animation-delay: -30s; opacity: .7; }
+    .c3 { width: 150px; height: 42px; top: 62%; left: -200px; animation-duration: 95s; animation-delay: -55s; opacity: .6; }
+
+    @keyframes drift { to { transform: translateX(calc(100vw + 400px)); } }
+
+    .star {
+      position: absolute;
+      font-size: 14px;
+      animation: twinkle 3s ease-in-out infinite;
+      opacity: .8;
+    }
+    @keyframes twinkle { 0%, 100% { transform: scale(.7) rotate(0); opacity: .4; } 50% { transform: scale(1.2) rotate(20deg); opacity: 1; } }
+
+    /* ---------- Layout ---------- */
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 40px 18px 56px;
+    }
+
+    /* ---------- Header ---------- */
+    header { text-align: center; margin-bottom: 30px; }
+
+    .avatar {
+      width: 104px; height: 104px;
+      margin: 0 auto 16px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #fff 0%, var(--sky-100) 100%);
+      border: 5px solid #fff;
+      box-shadow: var(--shadow), 0 0 0 6px var(--sky-300);
+      display: grid; place-items: center;
+      font-family: "Fredoka", sans-serif;
+      font-weight: 700;
+      font-size: 48px;
+      color: var(--sky-500);
+      position: relative;
+      cursor: pointer;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      animation: float 4s ease-in-out infinite;
+      transition: transform .2s;
+    }
+    .avatar:active { transform: scale(.92); }
+    .avatar .badge {
+      position: absolute; right: -4px; bottom: -2px;
+      font-size: 24px;
+      animation: wiggle 2.5s ease-in-out infinite;
+    }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    @keyframes wiggle { 0%, 100% { transform: rotate(-8deg); } 50% { transform: rotate(12deg) scale(1.1); } }
+
+    .greeting {
+      display: inline-block;
+      font-weight: 700;
+      font-size: .9rem;
+      color: var(--sky-700);
+      background: rgba(255, 255, 255, .8);
+      padding: 4px 14px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+      backdrop-filter: blur(4px);
+    }
+
+    h1 {
+      font-family: "Fredoka", sans-serif;
+      font-weight: 700;
+      font-size: clamp(2rem, 8vw, 2.7rem);
+      line-height: 1.1;
+      color: var(--sky-700);
+      text-shadow: 0 3px 0 rgba(255, 255, 255, .9);
+      margin-bottom: 10px;
+    }
+
+    .bio {
+      font-size: 1.02rem;
+      color: var(--muted);
+      max-width: 400px;
+      margin: 0 auto 16px;
+    }
+
+    .share-btn {
+      font-family: "Fredoka", sans-serif;
+      font-weight: 500;
+      font-size: .95rem;
+      color: var(--sky-700);
+      background: #fff;
+      border: 2px solid var(--sky-200);
+      border-radius: 999px;
+      padding: 8px 18px;
+      cursor: pointer;
+      box-shadow: 0 4px 0 var(--sky-200);
+      transition: transform .12s, box-shadow .12s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .share-btn:hover { transform: translateY(-1px); }
+    .share-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--sky-200); }
+
+    /* ---------- Kartu ---------- */
+    .list { display: grid; gap: 18px; }
+
+    .card {
+      position: relative;
+      background: var(--white);
+      border: 2.5px solid var(--sky-200);
+      border-radius: var(--radius);
+      padding: 20px 18px 18px;
+      box-shadow: var(--shadow);
+      transition: transform .25s cubic-bezier(.3, 1.6, .5, 1), border-color .2s, box-shadow .2s;
+    }
+    .card:hover { transform: translateY(-5px) rotate(-.4deg); border-color: var(--sky-400); }
+
+    .js .reveal { opacity: 0; transform: translateY(24px) scale(.97); }
+    .js .reveal.show {
+      opacity: 1; transform: none;
+      transition: opacity .6s ease, transform .6s cubic-bezier(.3, 1.4, .5, 1);
+    }
+    .js .reveal.show.card:hover { transform: translateY(-5px) rotate(-.4deg); transition: transform .25s cubic-bezier(.3, 1.6, .5, 1), border-color .2s; }
+
+    .card-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
+
+    .tag {
+      font-family: "Fredoka", sans-serif;
+      font-weight: 500;
+      font-size: .85rem;
+      padding: 5px 13px;
+      border-radius: 999px;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+    .t1 { background: #ffe9a8; }
+    .t2 { background: #ffd3e2; }
+    .t3 { background: #cdf3df; }
+    .t4 { background: #d9d3ff; }
+    .t5 { background: #bfe5fb; }
+    .t6 { background: #ffdcc2; }
+
+    .fav {
+      width: 38px; height: 38px;
+      border: none; background: var(--sky-50);
+      border-radius: 50%;
+      font-size: 1.2rem; line-height: 1;
+      color: #ff7aa2;
+      cursor: pointer;
+      transition: transform .2s cubic-bezier(.3, 1.8, .5, 1), background .2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .fav:hover { background: #ffe3ec; }
+    .fav.on { background: #ffe3ec; transform: scale(1.1); }
+    .fav:active { transform: scale(.8); }
+
+    .card h2 {
+      font-family: "Fredoka", sans-serif;
+      font-weight: 600;
+      font-size: 1.3rem;
+      line-height: 1.25;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+
+    .card p { color: var(--muted); font-size: .98rem; margin-bottom: 16px; }
+
+    .btn {
+      display: flex; align-items: center; justify-content: center;
+      gap: 6px;
+      width: 100%;
+      text-align: center;
+      text-decoration: none;
+      font-family: "Fredoka", sans-serif;
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: #fff;
+      background: linear-gradient(180deg, var(--sky-500), var(--sky-600));
+      padding: 14px 18px;
+      border-radius: 18px;
+      box-shadow: 0 5px 0 var(--sky-700);
+      transition: transform .12s, box-shadow .12s, filter .2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .btn:hover { filter: brightness(1.06); }
+    .btn:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--sky-700); }
+    .btn:focus-visible, .fav:focus-visible, .share-btn:focus-visible, .avatar:focus-visible {
+      outline: 3px solid #ffb703; outline-offset: 3px;
+    }
+
+    /* ---------- Footer ---------- */
+    footer { text-align: center; margin-top: 34px; font-size: .9rem; color: var(--muted); }
+    footer .note {
+      background: rgba(255, 255, 255, .75);
+      border: 2px dashed var(--sky-300);
+      border-radius: 20px;
+      padding: 14px 16px;
+      backdrop-filter: blur(4px);
+    }
+    footer .mini { margin-top: 10px; font-size: .78rem; opacity: .8; }
+
+    /* ---------- Toast ---------- */
+    .toast {
+      position: fixed; left: 50%; bottom: 28px;
+      transform: translate(-50%, 120px);
+      background: var(--sky-700); color: #fff;
+      font-family: "Fredoka", sans-serif; font-weight: 500;
+      padding: 10px 20px; border-radius: 999px;
+      box-shadow: 0 10px 24px -8px rgba(22, 106, 166, .6);
+      z-index: 10;
+      transition: transform .35s cubic-bezier(.3, 1.6, .5, 1);
+      max-width: 90vw; text-align: center;
+    }
+    .toast.show { transform: translate(-50%, 0); }
+
+    .particle { position: fixed; pointer-events: none; z-index: 20; font-size: 20px; will-change: transform, opacity; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .js .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Latar langit -->
+  <div class="sky" aria-hidden="true">
+    <div class="cloud c1"></div>
+    <div class="cloud c2"></div>
+    <div class="cloud c3"></div>
+    <span class="star" style="top:12%; left:12%; animation-delay:0s">✨</span>
+    <span class="star" style="top:22%; right:10%; animation-delay:1s">⭐</span>
+    <span class="star" style="top:48%; left:6%; animation-delay:2s">✨</span>
+    <span class="star" style="top:70%; right:8%; animation-delay:.5s">💙</span>
+    <span class="star" style="top:86%; left:14%; animation-delay:1.5s">✨</span>
+  </div>
+
+  <main class="wrap">
+    <!-- HEADER -->
+    <header>
+      <div class="avatar" id="avatar" role="button" tabindex="0" aria-label="Sapa Sasa">
+        S<span class="badge" aria-hidden="true">☁️</span>
+      </div>
+      <div class="greeting" id="greeting">Halo! 👋</div>
+      <h1>Pilihan Sasa ✨</h1>
+      <p class="bio">Starter pack harian biar tetap rapi, fokus, dan produktif. Barang-barang yang nemenin rutinitas ada di sini 👇</p>
+      <button class="share-btn" id="shareBtn" type="button">Bagikan halaman ini 💌</button>
+    </header>
+
+    <!-- DAFTAR ITEM -->
+    <section class="list" aria-label="Daftar rekomendasi">
+
+      <article class="card reveal">
+        <div class="card-top">
+          <span class="tag t1">⭐ Must Read</span>
+          <button class="fav" type="button" data-id="1" aria-label="Simpan ke favorit" aria-pressed="false">♡</button>
+        </div>
+        <h2>Buku Atomic Habits - James Clear</h2>
+        <p>Fondasi wajib kalau mau nata rutinitas baru pelan-pelan biar konsisten.</p>
+        <a class="btn" href="https://s.shopee.co.id/1qdMlcEUUw" target="_blank" rel="noopener noreferrer sponsored nofollow">Baca Bukunya di Sini 📖</a>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-top">
+          <span class="tag t2">✍️ Daily Journal</span>
+          <button class="fav" type="button" data-id="2" aria-label="Simpan ke favorit" aria-pressed="false">♡</button>
+        </div>
+        <h2>FIVEVOO Notebook Kulit A5</h2>
+        <p>Buku agenda elegan &amp; ringkas, pas buat daily notes, meeting, atau ide dadakan.</p>
+        <a class="btn" href="https://s.shopee.co.id/70LSv44lS5" target="_blank" rel="noopener noreferrer sponsored nofollow">Cek Detail Notebook 📓</a>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-top">
+          <span class="tag t3">☕ Desk Essential</span>
+          <button class="fav" type="button" data-id="3" aria-label="Simpan ke favorit" aria-pressed="false">♡</button>
+        </div>
+        <h2>CucuLemon Tumbler Stainless Steel</h2>
+        <p>Termos kopi/air minimalis, nahan dingin &amp; panas awet seharian di meja kerja.</p>
+        <a class="btn" href="https://s.shopee.co.id/9pfeIMMkxN" target="_blank" rel="noopener noreferrer sponsored nofollow">Pilih Warna Tumbler 🥤</a>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-top">
+          <span class="tag t4">🎧 Best Value</span>
+          <button class="fav" type="button" data-id="4" aria-label="Simpan ke favorit" aria-pressed="false">♡</button>
+        </div>
+        <h2>Lenovo Thinkplus EA110 Mini TWS</h2>
+        <p>Earbuds mungil suara jernih, nyaman buat nemenin playlist fokus atau podcast.</p>
+        <a class="btn" href="https://s.shopee.co.id/AUvL5dnWto" target="_blank" rel="noopener noreferrer sponsored nofollow">Lihat Promo TWS 🎵</a>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-top">
+          <span class="tag t5">👓 Eye Protection</span>
+          <button class="fav" type="button" data-id="5" aria-label="Simpan ke favorit" aria-pressed="false">♡</button>
+        </div>
+        <h2>Dymension Perseus Kacamata Anti Radiasi</h2>
+        <p>Filter blue light biar mata nggak perih pas mantengin layar, frame retro aesthetic.</p>
+        <a class="btn" href="https://s.shopee.co.id/8pn76hDOC1" target="_blank" rel="noopener noreferrer sponsored nofollow">Amankan Kacamata 🕶️</a>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-top">
+          <span class="tag t6">🎒 Everyday Carry</span>
+          <button class="fav" type="button" data-id="6" aria-label="Simpan ke favorit" aria-pressed="false">♡</button>
+        </div>
+        <h2>Evernext Backpack Venom Waterproof</h2>
+        <p>Ransel laptop anti air, kompartemen lega dan aman pas kena hujan di jalan.</p>
+        <a class="btn" href="https://s.shopee.co.id/6AmLvkNvaf" target="_blank" rel="noopener noreferrer sponsored nofollow">Cek Backpack Evernext 🎒</a>
+      </article>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="note">Link di atas langsung ke toko resmi Shopee. Harga &amp; promo bisa berubah sewaktu-waktu ya! ✨</div>
+      <p class="mini">Halaman ini berisi link afiliasi, Sasa bisa dapat komisi kecil tanpa biaya tambahan buat kamu 💙</p>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    document.documentElement.classList.add("js");
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    /* ---------- Sapaan sesuai jam ---------- */
+    (function () {
+      const h = new Date().getHours();
+      let g = "Selamat malam 🌙";
+      if (h >= 4 && h < 11) g = "Selamat pagi ☀️";
+      else if (h >= 11 && h < 15) g = "Selamat siang 🌤️";
+      else if (h >= 15 && h < 18) g = "Selamat sore 🌇";
+      document.getElementById("greeting").textContent = g;
+    })();
+
+    /* ---------- Toast ---------- */
+    const toastEl = document.getElementById("toast");
+    let toastTimer;
+    function toast(msg) {
+      toastEl.textContent = msg;
+      toastEl.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toastEl.classList.remove("show"), 2200);
+    }
+
+    /* ---------- Efek percikan ---------- */
+    function burst(x, y, emojis) {
+      if (reduceMotion || !Element.prototype.animate) return;
+      const set = emojis || ["✨", "💙", "⭐", "☁️"];
+      for (let i = 0; i < 8; i++) {
+        const p = document.createElement("span");
+        p.className = "particle";
+        p.textContent = set[Math.floor(Math.random() * set.length)];
+        p.style.left = x + "px";
+        p.style.top = y + "px";
+        document.body.appendChild(p);
+        const angle = (Math.PI * 2 * i) / 8 + Math.random() * 0.6;
+        const dist = 50 + Math.random() * 50;
+        const anim = p.animate(
+          [
+            { transform: "translate(-50%,-50%) scale(.4)", opacity: 1 },
+            { transform: `translate(calc(-50% + ${Math.cos(angle) * dist}px), calc(-50% + ${Math.sin(angle) * dist - 20}px)) scale(1.2) rotate(${Math.random() * 120 - 60}deg)`, opacity: 0 }
+          ],
+          { duration: 750 + Math.random() * 250, easing: "cubic-bezier(.2,.8,.3,1)" }
+        );
+        anim.onfinish = () => p.remove();
+      }
+    }
+
+    /* ---------- Muncul pelan saat scroll ---------- */
+    const items = document.querySelectorAll(".reveal");
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("show");
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      items.forEach((el, i) => {
+        el.style.transitionDelay = (i % 3) * 80 + "ms";
+        io.observe(el);
+      });
+    } else {
+      items.forEach((el) => el.classList.add("show"));
+    }
+
+    /* ---------- Tombol link: percikan saat diklik ---------- */
+    document.querySelectorAll(".btn").forEach((b) => {
+      b.addEventListener("click", (e) => burst(e.clientX || b.getBoundingClientRect().left + 40, e.clientY || b.getBoundingClientRect().top));
+    });
+
+    /* ---------- Favorit (tersimpan di browser) ---------- */
+    const FAV_KEY = "pilihan-sasa-fav";
+    let favs = [];
+    try { favs = JSON.parse(localStorage.getItem(FAV_KEY)) || []; } catch (e) { favs = []; }
+
+    function paintFav(btn, on) {
+      btn.classList.toggle("on", on);
+      btn.textContent = on ? "♥" : "♡";
+      btn.setAttribute("aria-pressed", on ? "true" : "false");
+    }
+
+    document.querySelectorAll(".fav").forEach((btn) => {
+      const id = btn.dataset.id;
+      paintFav(btn, favs.includes(id));
+      btn.addEventListener("click", (e) => {
+        const on = !favs.includes(id);
+        favs = on ? [...favs, id] : favs.filter((f) => f !== id);
+        try { localStorage.setItem(FAV_KEY, JSON.stringify(favs)); } catch (err) {}
+        paintFav(btn, on);
+        if (on) {
+          const r = btn.getBoundingClientRect();
+          burst(r.left + r.width / 2, r.top + r.height / 2, ["💗", "💙", "✨"]);
+          toast("Masuk favorit 💗");
+        } else {
+          toast("Dihapus dari favorit");
+        }
+      });
+    });
+
+    /* ---------- Avatar: klik buat sapa ---------- */
+    const avatar = document.getElementById("avatar");
+    const hello = ["Hai, makasih udah mampir! 💙", "Semoga harimu produktif ✨", "Jangan lupa minum air ya 🥤", "Yuk pelan-pelan tapi konsisten 🌱"];
+    let helloIdx = 0;
+    function sayHello() {
+      const r = avatar.getBoundingClientRect();
+      burst(r.left + r.width / 2, r.top + r.height / 2);
+      toast(hello[helloIdx++ % hello.length]);
+    }
+    avatar.addEventListener("click", sayHello);
+    avatar.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); sayHello(); }
+    });
+
+    /* ---------- Bagikan halaman ---------- */
+    document.getElementById("shareBtn").addEventListener("click", async () => {
+      const data = { title: "Pilihan Sasa ✨", text: "Starter pack harian pilihan Sasa 💙", url: location.href };
+      try {
+        if (navigator.share) {
+          await navigator.share(data);
+        } else if (navigator.clipboard) {
+          await navigator.clipboard.writeText(location.href);
+          toast("Link disalin! 📋");
+        } else {
+          toast("Salin link dari address bar ya 🙏");
+        }
+      } catch (err) { /* dibatalkan pengguna */ }
+    });
+  </script>
+</body>
+</html>
